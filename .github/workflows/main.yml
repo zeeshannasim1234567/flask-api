@@ -1,0 +1,21 @@
+name: Test Docker Build
+
+# 1. When should the robot wake up?
+on:
+  push:
+    branches: [ "main" ]
+
+# 2. What should the robot do?
+jobs:
+  build-and-test:
+    # Rent a temporary Ubuntu server
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step A: Download your code from GitHub onto the temporary server
+    - name: Get the code
+      uses: actions/checkout@v3
+
+    # Step B: Try to build the Docker image
+    - name: Build the Docker image
+      run: docker build -t my-flask-app .
